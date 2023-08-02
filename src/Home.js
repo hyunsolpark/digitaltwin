@@ -105,30 +105,27 @@ const TheModel=() =>{
     })
   }
   //결함조건 따라서 특정 animation 작동과 색깔 변화시키는 코드
+  const color=[[1,1,1],[0.7461602687835693,0.07471167296171188,0.8000000715255737],[1,1,1]]
+  const colorBack=(n)=>{
+    errorplace[n].color.r=color[n][0]
+    errorplace[n].color.g=color[n][1]
+    errorplace[n].color.b=color[n][2]
+  }
+
   if(errors.결함조건==="정상"){
     actions[0].play();
-    errorplace[0].color.r=1
-    errorplace[0].color.g=1
-    errorplace[0].color.b=1
-    errorplace[1].color.r=0.7461602687835693
-    errorplace[1].color.g=0.07471167296171188
-    errorplace[1].color.b=0.8000000715255737
-    errorplace[2].color.r=1
-    errorplace[2].color.g=1
-    errorplace[2].color.b=1
+    colorBack(0)
+    colorBack(1)
+    colorBack(2)
     model.speed=100
   }
   else if(errors.결함조건==="베어링 결함"){
     actions[1].play();
-    errorplace[0].color.r=1
-    errorplace[0].color.g=1
-    errorplace[0].color.b=1
+    colorBack(0)
+    colorBack(2)
     errorplace[1].color.r=1
     errorplace[1].color.g=0
     errorplace[1].color.b=0
-    errorplace[2].color.r=1
-    errorplace[2].color.g=1
-    errorplace[2].color.b=1
     annotations[1]=<Html
       key={scene.children[23].uuid}
       position={[scene.children[23].position.x, scene.children[23].position.y, scene.children[23].position.z]}
@@ -150,12 +147,8 @@ const TheModel=() =>{
     errorplace[0].color.r=1
     errorplace[0].color.g=0
     errorplace[0].color.b=0
-    errorplace[1].color.r=0.7461602687835693
-    errorplace[1].color.g=0.07471167296171188
-    errorplace[1].color.b=0.8000000715255737
-    errorplace[2].color.r=1
-    errorplace[2].color.g=1
-    errorplace[2].color.b=1
+    colorBack(1)
+    colorBack(2)
     annotations[0]=<Html
       key={scene.children[22].uuid}
       position={[scene.children[22].position.x, scene.children[22].position.y, scene.children[22].position.z]}
@@ -176,12 +169,8 @@ const TheModel=() =>{
     actions[2].play();
     actions[3].play();
     actions[4].play();
-    errorplace[0].color.r=1
-    errorplace[0].color.g=1
-    errorplace[0].color.b=1
-    errorplace[1].color.r=0.7461602687835693
-    errorplace[1].color.g=0.07471167296171188
-    errorplace[1].color.b=0.8000000715255737
+    colorBack(0)
+    colorBack(1)
     errorplace[2].color.r=0
     errorplace[2].color.g=0
     errorplace[2].color.b=1
