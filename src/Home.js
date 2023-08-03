@@ -15,9 +15,9 @@ const TheModel=() =>{
   //3d모델에 포함된 animation들을 actions안에 넣는 코드
   const actions=[];
   animations.forEach((clip)=>{
-      actions.push(mixer.clipAction(clip))
+    actions.push(mixer.clipAction(clip))
   });
-
+  
   //모터와 벨트 상태판 클릭 시 info 페이지로 이동하는 코드
   const navigate=useNavigate();
   const info=(data)=>{
@@ -65,7 +65,7 @@ const TheModel=() =>{
   //상태판과 결함 시 색깔을 바꿀 대상을 화면을 반복문으로 찾아서 배열에 저장
   const annotations = []
   const errorplace=[]
-
+  
   if(annotations.length===0)
   {
     scene.traverse((o) => {
@@ -111,13 +111,13 @@ const TheModel=() =>{
     errorplace[n].color.g=color[n][1]
     errorplace[n].color.b=color[n][2]
   }
-
+  
   if(errors.결함조건==="정상"){
     actions[0].play();
     colorBack(0)
     colorBack(1)
     colorBack(2)
-    model.speed=100
+    scene.children[32].position.x=0.7576103806495667
   }
   else if(errors.결함조건==="베어링 결함"){
     actions[1].play();
@@ -126,6 +126,7 @@ const TheModel=() =>{
     errorplace[1].color.r=1
     errorplace[1].color.g=0
     errorplace[1].color.b=0
+    scene.children[32].position.x=0.7576103806495667
     annotations[1]=<Html
       key={scene.children[23].uuid}
       position={[scene.children[23].position.x, scene.children[23].position.y, scene.children[23].position.z]}
@@ -144,6 +145,8 @@ const TheModel=() =>{
   }
   else if(errors.결함조건==="축 불평형"){
     actions[0].play();
+    actions[5].play();
+    actions[6].play();
     errorplace[0].color.r=1
     errorplace[0].color.g=0
     errorplace[0].color.b=0
@@ -174,6 +177,7 @@ const TheModel=() =>{
     errorplace[2].color.r=0
     errorplace[2].color.g=0
     errorplace[2].color.b=1
+    scene.children[32].position.x=0.7576103806495667
     model.speed=50
     annotations[2]=<Html
       key={scene.children[24].uuid}

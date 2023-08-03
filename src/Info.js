@@ -1,26 +1,16 @@
 import React from "react"
 import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import ApexCharts from "./ChartViewer";
+// import axios from "axios";
 
 //상세 페이지 컴포넌트
 const Info=()=>{
-    //실시간 차트 체크 위해 더미데이터 만든 코드
-    const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
+    //백엔드와 통신 테스트 코드
+    // axios.get("http://localhost:8000")
+    //     .then((res)=>console.log(res.data))
+    //     .catch((err)=>console.log(err))
 
-    useEffect(() => {
-    const interval = setInterval(() => {
-      const val = Math.floor(Math.random() * (100 - 30 + 1)) + 30;
-      let array = [...data, val];
-      array.shift();
-      updateData(array);
-    }, 100);
-    return () => {
-      window.clearInterval(interval);
-        };
-    }, [data]);
-
-    //뒤로가기 코드
+    //뒤로가기 기능
     const navigate=useNavigate();
 
     const {id}=useParams();
@@ -49,7 +39,7 @@ const Info=()=>{
                 </ul>
                 <div className="info_chart">
                     <h4>진동데이터 차트</h4>
-                    <ApexCharts data={data} />
+                    <ApexCharts />
                 </div>
             </div>
         </div>

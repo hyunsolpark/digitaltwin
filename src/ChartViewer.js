@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
-export default function ApexCharts(props) {
+const ApexCharts=()=> {
+
+  //실시간 차트 체크 위해 더미데이터 만든 코드
+  const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
+    
+  useEffect(() => {
+  const interval = setInterval(() => {
+    const val = Math.floor(Math.random() * (100 - 30 + 1)) + 30;
+    let array = [...data, val];
+    array.shift();
+    updateData(array);
+  }, 100);
+  return () => {
+    window.clearInterval(interval);
+      };
+  }, [data]);
+  
   const series = [
     {
       name: "xx",
-      data: props.data
+      data: data
     }
   ];
   const options = {
@@ -43,3 +59,5 @@ export default function ApexCharts(props) {
     </div>
   );
 }
+
+export default React.memo(ApexCharts);
